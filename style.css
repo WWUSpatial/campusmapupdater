@@ -1,0 +1,236 @@
+@import 'https://js.arcgis.com/4.25/@arcgis/core/assets/esri/themes/light/main.css';
+html,
+
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+b {
+  font-weight: bold;
+}
+#headerbar {
+  position: relative; 
+  height: 40px;
+  z-index: 2;
+  background-color: #003f87;
+}
+#map {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  height: calc(100% - 40px);
+  width: 100%;
+  z-index: 50;
+}
+#logo {
+  height: 40px;
+  cursor: pointer;
+}
+
+
+#headerinternals {
+  height: 40px;
+  align-items: center;
+  display: flex; 
+  font-size: 1rem;
+  left: 12px;
+  position: absolute;
+  gap: 10px;
+} 
+
+#headertext {
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+#measureWidget {
+  visibility: hidden;
+}
+
+#credits{
+  text-align: right;
+  font-size: 0.7rem;
+}
+
+.button {
+  position: relative;
+  transition-duration: 0.4s;
+  border: none;
+  background-color: #83cfff;
+  cursor: pointer;
+  height: calc(100% - 10px);
+}
+
+#mapinfo {
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  
+}
+.dialog-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#urlclose{
+  position: absolute;
+  bottom: 10px;
+}
+
+.column {
+  width: 49%; /* Adjust the width as needed */
+  float: left;
+  margin-right: 1%; /* Adjust the margin between columns as needed */
+  overflow-wrap: break-word;
+}
+
+.column:last-child {
+  margin-right: 0; /* Remove margin on the last column to avoid extra spacing */
+}
+
+/* Clear the float to prevent parent container from collapsing */
+.column::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.modalbuttons {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+}
+
+.buttondialog {
+  height: 27px;
+  right: 10px;
+  float: right;
+
+}
+
+.esri-widget--button{
+  background-color: #abd0df;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #7ba0cd;
+  color: white;
+}
+
+.esri-distance-measurement-2d__hint-text::after{
+  content: ". Double click/tap to finish measurement.";
+}
+
+/* #zoomSlider_controls_content {
+  position: absolute;
+  left: 40px;
+  top: 5px;
+} */
+
+#info {
+  position: absolute;
+  left: 15px;
+  bottom: 5px;
+  color: #000;
+  z-index: 3;
+}
+
+
+
+/* #legend .esri-expand__content {
+  transition: none;
+} */
+
+/* #legend .esri-expand__content--expanded {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  animation: expand-upwards .2s;
+  margin-left: 0px;
+  margin-bottom: 10px;
+} */
+
+
+
+.esri-scale-bar__bar-container {
+  z-index: 0;
+}
+
+.esri-slider {
+  height: 100px;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+}
+
+/* .esri-slider__tick-label{
+  font-size: 12px;
+  font-family: arial !important;
+  font-weight: bold;
+  user-select: none;
+} */
+
+
+@media only screen and (max-width : 350px)  {
+  /* Hack to get rid of the text in the header and replace it*/ 
+  #headertext { font-size: 0; }
+  #headertext::after { content: "WWU Map";
+    font-size: 1rem;
+  }
+  .esri-ui-top-left{
+    top: 40px;
+  }
+  #header{
+    left: 11px;
+  }
+  .column{
+    width: 100%;
+  }
+
+  #urlclose{
+    position: relative;
+  }
+
+}
+
+
+@media only screen and (min-width : 666px)  {    
+  .esri-search { 
+    width:300 px;
+    z-index: 10; }
+  #measureWidget{
+    visibility: visible;
+  }
+}
+
+/* @keyframes expand-upwards {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+} */

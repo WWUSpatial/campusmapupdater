@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WWU Campus Map</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.ico">
+    <link rel="preload" href="./style.css" />
+  </head>
+  <body>
+    <div class="internals" id="headerbar">
+      <div id="headerinternals">
+        <img onclick="window.location.href='https://wwu.edu';" id="logo" src="WWU.svg" alt="WWU Logo">
+        <h1 id="headertext"> WWU Campus Map</h1>
+        <button onclick="mapinfoDialog.showModal()" id="mapinfo" class="button"><b>?</b></button>
+        <div id="printWidget"></div>
+      </div>
+    </div>
+    
+    <dialog id="voiceinteractionDialog">
+      <h1>Voice Interaction</h1>
+      <p><table>
+        <tr>
+          <th>Button</th>
+          <th>Action</th>
+        </tr>
+        <tr>
+          <td><b>Zoom In</b></td>
+          <td>Zooms in the map</td>
+        </tr>
+        <tr>
+          <td><b>Zoom Out</b></td>
+          <td>Zooms out the map</td>
+        </tr>
+        <tr>
+          <td><b>Home</b></td>
+          <td>Zooms to the default extent</td>
+        </tr>
+        <tr>
+          <td><b>Layer Selector</b></td>
+          <td>Opens the layer selector to control layer visibility</td>
+        </tr>
+        <tr>
+          <td><b>Legend</b></td>
+          <td>Opens the legend</td>
+        </tr>
+        <tr>
+          <td><b>Toggle Basemap</b></td>
+          <td>Toggles between the topographic and the satellite basemaps</td>
+        </tr>
+        <tr>
+          <td><b>Search</b></td>
+          <td>Opens the search bar</td>
+        </tr>
+        <tr>
+          <td><b>Find My Location</b></td>
+          <td>Zooms to your current location</td>
+        </tr>
+        <tr>
+          <td><b>Points of Interest</b></td>
+          <td>Opens the points of interest bookmarks</td>
+        </tr>
+        <tr>
+          <td><b>Buildings</b></td>
+          <td>Opens the buildings bookmarks</td>
+        </tr>
+        <tr>
+          <td><b>Parking</b></td>
+          <td>Opens the parking bookmarks</td>
+        </tr>
+      </table></p>
+      
+      <button onclick="voiceinteractionDialog.close()" class="button buttondialog">Close</button>
+    </dialog>
+    <dialog id="urlparametersDialog">
+      <div class="column">
+        <h1>URL Parameters</h1>
+        <p>URL Parameters can be used with the WWU Campus Map to control the location of the map when it opens as well as the layers that are visible.</p>
+
+        <p>For zooming to a specific building, parking lot, or key feature, the URL parameter is <strong>#find=</strong>.</p>
+        <p>For example:</p>
+
+        <ul>
+            <li><a href="https://map.wwu.edu/#find=AH">https://map.wwu.edu/<strong>#find=AH</strong></a></li>
+        </ul>
+
+        <p>This will zoom the map to the AH building (Arntzen Hall). Other examples include:</p>
+
+        <ul>
+            <li><a href="https://map.wwu.edu/#find=9G">https://map.wwu.edu/<strong>#find=9G</strong></a> (for Parking Lot 9-G)</li>
+            <li><a href="https://map.wwu.edu/#find=Red">https://map.wwu.edu/<strong>#find=Red</strong></a> (for Red Square)</li>
+        </ul>
+        <p>For turning specific data layers on, the URL parameter is <strong>#layers=</strong>.</p>
+
+        <ul>
+            <li><a href="https://map.wwu.edu/#layers=computer">https://map.wwu.edu/<strong>#layers=computer</strong></a> (to turn on the computer labs layer)</li>
+        </ul>
+
+        <p>Multiple layers can be turned on at once by using a <strong>/</strong> between parameters:</p>
+
+        <ul>
+            <li><a href="https://map.wwu.edu/#layers=food/art">https://map.wwu.edu/<strong>#layers=food/art</strong></a></li>
+        </ul>
+
+        <p>The location and layer parameters can be used in conjunction with the <strong>&amp;</strong>:</p>
+
+        <ul>
+            <li><a href="https://map.wwu.edu/#find=OM&amp;layers=bike">https://map.wwu.edu/<strong>#find=OM&amp;layers=bike</strong></a></li>
+        </ul>
+      </div>
+      <div class="column">
+        <h1>URL Layers</h1>
+        <p>Below is the list of map <strong>layers</strong> that are available:</p>
+
+        <ul>
+          <li><a href="https://map.wwu.edu/#layers=accessibility">Accessibility</a></li>
+          <li><a href="https://map.wwu.edu/#layers=art">Art</a></li>
+          <li><a href="https://map.wwu.edu/#layers=bike">Bike</a></li>
+          <li><a href="https://map.wwu.edu/#layers=bus">Bus</a></li>
+          <li><a href="https://map.wwu.edu/#layers=computer">Computer</a></li>
+          <li><a href="https://map.wwu.edu/#layers=food">Food</a></li>
+          <li><a href="https://map.wwu.edu/#layers=family">Family (lactation and changing rooms)</a></li>
+          <li><a href="https://map.wwu.edu/#layers=gnrr">GNRR (Gender Neutral Restrooms)</a></li>
+          <li><a href="https://map.wwu.edu/#layers=parking">Parking (Visitor)</a></li>
+          <li><a href="https://map.wwu.edu/#layers=visitor">Visitor (parking)</a></li>
+          <li><a href="https://map.wwu.edu/#layers=evening">Evening (parking)</a></li>
+          <li><a href="https://map.wwu.edu/#layers=permit">Permit (parking)</a></li>
+          <li><a href="https://map.wwu.edu/#layers=summer">Summer (parking)</a></li>
+          <li><a href="https://map.wwu.edu/#layers=safety">Safety</a></li>
+          <li><a href="https://map.wwu.edu/#layers=snow">Snow (priority snow removal routes)</a></li>
+          <li><a href="https://map.wwu.edu/#layers=sustainability">Sustainability</a></li>
+          <li><a href="https://map.wwu.edu/#layers=trees">Trees</a></li>
+          <li><a href="https://map.wwu.edu/#layers=airphoto">AirPhoto (for the basemap)</a></li>
+        </ul>
+      </div>
+      <button onclick="urlparametersDialog.close()" id="urlclose" class="button buttondialog">Close</button>
+    </dialog>
+    <dialog id="mapinfoDialog">
+      <h1>About</h1>
+      <p>
+        For <b>Map Usage Notes</b> (and printable maps) see: <a href = 'https://wwu.edu/campus-maps'> https://wwu.edu/campus-maps </a>
+      </p>
+      <p>
+      <b>General Tips:</b>
+      </p>
+      <ul>
+        <li>Map Layers can be turned <b>On / Off</b> from the <b>LAYER LIST</b> (left)</li>
+        <ul>
+          <li>Expand 'group layers' to control sub-layers</li>
+          <li>Some layers only display when zoomed in</li>
+        </ul>
+ 
+        <li>Use <b>SEARCH</b> (right) to locate WWU buildings, departments, services, etc.</li>
+        <ul>
+          <li>Or the spatial <b>BOOKMARKS</b> (right) for buildings, parking lots and key places</li>
+        </ul>
+        <li>The <b>LOCATION</b> button (right) will zoom to your current location</li>
+        <li>The <b>BASEMAP</b> button (left) will display an air photo</li>
+      </ul>
+      <p>
+        The <a href ="https://www.wwu.edu/campus-maps">WWU Campus Map</a> is produced and maintained by the <a href="https://cenv.wwu.edu/spatial-institute">Spatial Institute</a>
+        <br>at the <a href= "https://cenv.wwu.edu/">College of the Environment</a>, <a href="https://wwu.edu/">Western Washington University</a></br>
+      </p>
+      <p>  
+        Questions or feedback about the map - contact <a href="mailto:stefan@wwu.edu">Stefan Freelan</a>
+      </p>
+      <p id="credits"> Map built on ESRI's ArcGIS SDK framework</p>
+      <div class="modalbuttons">
+        <button onclick="voiceinteractionDialog.showModal()" id="voiceinteraction" class="button buttondialog"><b>Voice Interaction</b></button>
+        <button onclick="urlparametersDialog.showModal()" id="urlparameters" class="button buttondialog"><b>URL Parameters</b></button>
+        <button onclick="mapinfoDialog.close()" class="button buttondialog">Close</button>
+      </div>  
+    </dialog>
+    <div class = "internals" id="map"></div>
+    <div id = "zoomSlider"></div>
+    <div id = "legend"></div>
+    <div id = "measureWidget"></div>
+    <div id=  "locateWidget"></div>
+    <span id= "info"></span>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
